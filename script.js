@@ -5,7 +5,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-var geometry = new THREE.SphereGeometry( .5, 32, 32 );
+var geometry = new THREE.SphereGeometry( .5, 32 );
 var planetTexture = new THREE.TextureLoader().load( "neptune.png" );
 planetTexture.wrapS = planetTexture.wrapT = THREE.MirroredRepeatWrapping;
 planetTexture.repeat.set( 2, 2 );
@@ -22,12 +22,13 @@ for (let i = 0; i < 200; i++) {
   let geometry = new THREE.PlaneGeometry( .5, .5, .5 );
   let material = new THREE.MeshBasicMaterial( { map: starTexture } );
   let star = new THREE.Mesh( geometry, material );
-  star.position.set(getRandom(), getRandom(), getRandom());
-  stars.push(star);
+  star.position.set( getRandom(), getRandom(), getRandom() );
+  star.material.side = THREE.DoubleSide;
+  stars.push( star );
 }
 
 for (let j = 0; j < stars.length; j++) {
-  scene.add(stars[j]);
+  scene.add( stars[j] );
 }
 
 var brightness = 0;
