@@ -5,7 +5,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-var geometry = new THREE.SphereGeometry( .5, 32 );
+var geometry = new THREE.SphereGeometry( 0.5, 32, 32 );
 var planetTexture = new THREE.TextureLoader().load( "neptune.png" );
 planetTexture.wrapS = planetTexture.wrapT = THREE.MirroredRepeatWrapping;
 planetTexture.repeat.set( 2, 2 );
@@ -19,7 +19,7 @@ var starTexture = new THREE.TextureLoader().load( "star.png" );
 var stars = [];
 
 for (let i = 0; i < 200; i++) {
-  let geometry = new THREE.PlaneGeometry( .5, .5, .5 );
+  let geometry = new THREE.PlaneGeometry( 0.5, 0.5 );
   let material = new THREE.MeshBasicMaterial( { map: starTexture } );
   let star = new THREE.Mesh( geometry, material );
   star.position.set( getRandom(), getRandom(), getRandom() );
@@ -31,8 +31,8 @@ for (let j = 0; j < stars.length; j++) {
   scene.add( stars[j] );
 }
 
-var brightness = 0;
-var rotSpeed = .01;
+var lightness = 0;
+var rotSpeed = 0.01;
 
 function animate() {
   
@@ -41,8 +41,8 @@ function animate() {
     let star = stars[k];
     star.rotation.x += 0.01;
     star.rotation.y += 0.01;
-    brightness > 100 ? brightness = 0 : brightness++;
-    star.material.color = new THREE.Color("hsl(255, 100%, " + brightness + "%)");
+    lightness > 100 ? lightness = 0 : lightness++;
+    star.material.color = new THREE.Color("hsl(255, 100%, " + lightness + "%)");
   }
   
     // Rotate camera
