@@ -6,21 +6,21 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 var geometry = new THREE.SphereGeometry( .5, 32, 32 );
-var planetTex = new THREE.TextureLoader().load( "neptune.png" );
-planetTex.wrapS = planetTex.wrapT = THREE.MirroredRepeatWrapping;
-planetTex.repeat.set( 2, 2 );
-var material = new THREE.MeshBasicMaterial( { map: planetTex } );
+var planetTexture = new THREE.TextureLoader().load( "neptune.png" );
+planetTexture.wrapS = planetTexture.wrapT = THREE.MirroredRepeatWrapping;
+planetTexture.repeat.set( 2, 2 );
+var material = new THREE.MeshBasicMaterial( { map: planetTexture } );
 var planet = new THREE.Mesh( geometry, material );
 scene.add( planet );
 
 camera.position.z = 10;
 
-var texture = new THREE.TextureLoader().load( "star.png" );
+var starTexture = new THREE.TextureLoader().load( "star.png" );
 var stars = [];
 
 for (let i = 0; i < 200; i++) {
   let geometry = new THREE.PlaneGeometry( .5, .5, .5 );
-  let material = new THREE.MeshBasicMaterial( { map: texture } );
+  let material = new THREE.MeshBasicMaterial( { map: starTexture } );
   let star = new THREE.Mesh( geometry, material );
   star.position.set(getRandom(), getRandom(), getRandom());
   stars.push(star);
